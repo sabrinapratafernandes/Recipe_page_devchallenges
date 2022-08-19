@@ -1,24 +1,49 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import RECEITAS from './data/receitas';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        RECEITAS.map(item => (
+          <div>
+            {item.nome}
+            <div>
+              <h3>Etapas</h3>
+              <ul>
+                {
+                  item.etapas.map(etapa => (
+                    <li>
+                      {etapa.nome}
+                      <ol>
+                        {
+                          etapa.passos.map(passo => (
+                            <li>
+                              <input type={'checkbox'} />
+                              {passo}
+                            </li>
+                          ))
+                        }
+                      </ol>
+                    </li>
+                  ))
+                }
+              </ul>
+              <h3>Instruções</h3>
+              <ol>
+                {
+                  item.instrucoes.map(instrucao => (
+                    <li>
+                      {instrucao}
+                    </li>
+                  ))
+                }
+              </ol>
+            </div>
+          </div>
+        ))
+      }
     </div>
   );
 }
